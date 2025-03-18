@@ -80,13 +80,10 @@ describe("Sign In Form", () => {
       const passwordInput = documentBody.querySelector(
         "#password"
       ) as HTMLInputElement;
-      const submitButton = form.querySelector(
-        "button[type='submit']"
-      ) as HTMLButtonElement;
 
       emailInput.value = "wrong@example.com";
       passwordInput.value = "wrongpass";
-      submitButton.click();
+      form.dispatchEvent(new Event("submit"));
 
       // Wait for the async operation to complete
       await new Promise((resolve) => setTimeout(resolve, 1100));
@@ -106,13 +103,10 @@ describe("Sign In Form", () => {
       const passwordInput = documentBody.querySelector(
         "#password"
       ) as HTMLInputElement;
-      const submitButton = form.querySelector(
-        "button[type='submit']"
-      ) as HTMLButtonElement;
 
       emailInput.value = "testuser";
       passwordInput.value = "testpass";
-      submitButton.click();
+      form.dispatchEvent(new Event("submit"));
 
       // Wait for the async operation to complete
       await new Promise((resolve) => setTimeout(resolve, 1100));
