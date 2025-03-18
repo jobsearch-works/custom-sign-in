@@ -16,10 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const result = await signIn.signIn(username, password);
-        resultDiv.textContent = "Sign in successful!";
-        resultDiv.className = "success";
-      } catch (error) {
-        resultDiv.textContent = `Sign in failed: ${error.message}`;
+        resultDiv.textContent = result.message;
+        resultDiv.className = result.success ? "success" : "error";
+      } catch (error: unknown) {
+        const errorMessage =
+          error instanceof Error ? error.message : "An unknown error occurred";
+        resultDiv.textContent = `Sign in failed: ${errorMessage}`;
         resultDiv.className = "error";
       }
     });

@@ -7,5 +7,5 @@ module.exports = {
     "^.+\\.ts$": "ts-jest",
   },
   moduleFileExtensions: ["ts", "js", "json", "node"],
-  setupFiles: ["<rootDir>/src/test/setup.ts"],
+  setupFilesAfterEnv: ["<rootDir>/src/test/setup.ts"],
 };

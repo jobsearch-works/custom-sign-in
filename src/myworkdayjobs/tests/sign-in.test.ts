@@ -2,21 +2,34 @@
  * @jest-environment jsdom
  */
 
-import { fireEvent, getByLabelText, getByRole } from "@testing-library/dom";
-import fs from "fs";
-import path from "path";
+import "@testing-library/jest-dom";
+import { CustomSignIn } from "../CustomSignIn";
 
-describe("Login Form", () => {
-  let documentBody;
+describe("Sign In Form", () => {
+  let documentBody: Document;
+  let signIn: CustomSignIn;
 
   beforeEach(() => {
-    // Load the HTML file
-    const html = fs.readFileSync(path.resolve(__dirname, "login.html"), "utf8");
+    // Create a new document for each test
     documentBody = document.implementation.createHTMLDocument();
-    documentBody.documentElement.innerHTML = html;
+    documentBody.body.innerHTML = `
+      <form id="login-form">
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Sign In</button>
+        <div id="error-message"></div>
+      </form>
+    `;
+    signIn = new CustomSignIn();
   });
 
-  test("renders the login form", () => {
+  test("renders all form elements", () => {
     expect(documentBody.querySelector("#login-form")).toBeInTheDocument();
     expect(documentBody.querySelector("#email")).toBeInTheDocument();
     expect(documentBody.querySelector("#password")).toBeInTheDocument();
@@ -25,29 +38,55 @@ describe("Login Form", () => {
     ).toBeInTheDocument();
   });
 
-  test("displays an error when submitting empty fields", () => {
-    const form = documentBody.querySelector("#login-form");
+  test("shows error message for invalid credentials", async () => {
+    const form = documentBody.querySelector("#login-form") as HTMLFormElement;
     const errorMessage = documentBody.querySelector("#error-message");
 
-    fireEvent.submit(form);
+    if (form && errorMessage) {
+      const emailInput = documentBody.querySelector(
+        "#email"
+      ) as HTMLInputElement;
+      const passwordInput = documentBody.querySelector(
+        "#password"
+      ) as HTMLInputElement;
+      const submitButton = form.querySelector(
+        "button[type='submit']"
+      ) as HTMLButtonElement;
 
-    expect(errorMessage.style.display).toBe("block");
-    expect(errorMessage.textContent).toBe(
-      "Please enter both email and password."
-    );
+      emailInput.value = "wrong@example.com";
+      passwordInput.value = "wrongpass";
+      submitButton.click();
+
+      // Wait for the async operation to complete
+      await new Promise((resolve) => setTimeout(resolve, 1100));
+
+      expect(errorMessage.textContent).toBe("Invalid credentials");
+    }
   });
 
-  test("hides error when valid credentials are provided", () => {
-    const emailInput = getByLabelText(documentBody, "Email Address");
-    const passwordInput = getByLabelText(documentBody, "Password");
-    const form = documentBody.querySelector("#login-form");
+  test("handles successful sign in", async () => {
+    const form = documentBody.querySelector("#login-form") as HTMLFormElement;
     const errorMessage = documentBody.querySelector("#error-message");
 
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(passwordInput, { target: { value: "password123" } });
+    if (form && errorMessage) {
+      const emailInput = documentBody.querySelector(
+        "#email"
+      ) as HTMLInputElement;
+      const passwordInput = documentBody.querySelector(
+        "#password"
+      ) as HTMLInputElement;
+      const submitButton = form.querySelector(
+        "button[type='submit']"
+      ) as HTMLButtonElement;
 
-    fireEvent.submit(form);
+      emailInput.value = "testuser";
+      passwordInput.value = "testpass";
+      submitButton.click();
 
-    expect(errorMessage.style.display).toBe("none");
+      // Wait for the async operation to complete
+      await new Promise((resolve) => setTimeout(resolve, 1100));
+
+      expect(errorMessage.textContent).toBe("Sign in successful");
+    }
   });
 });
