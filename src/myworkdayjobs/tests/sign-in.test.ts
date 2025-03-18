@@ -27,15 +27,46 @@ describe("Sign In Form", () => {
       </form>
     `;
     signIn = new CustomSignIn();
+
+    // Add form submission handler
+    const form = documentBody.querySelector("#login-form") as HTMLFormElement;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const emailInput = documentBody.querySelector(
+        "#email"
+      ) as HTMLInputElement;
+      const passwordInput = documentBody.querySelector(
+        "#password"
+      ) as HTMLInputElement;
+      const errorMessage = documentBody.querySelector("#error-message");
+
+      try {
+        const result = await signIn.signIn(
+          emailInput.value,
+          passwordInput.value
+        );
+        if (errorMessage) {
+          errorMessage.textContent = result.message;
+        }
+      } catch (error) {
+        if (errorMessage) {
+          errorMessage.textContent =
+            error instanceof Error ? error.message : "An error occurred";
+        }
+      }
+    });
   });
 
   test("renders all form elements", () => {
-    expect(documentBody.querySelector("#login-form")).toBeInTheDocument();
-    expect(documentBody.querySelector("#email")).toBeInTheDocument();
-    expect(documentBody.querySelector("#password")).toBeInTheDocument();
-    expect(
-      documentBody.querySelector("button[type='submit']")
-    ).toBeInTheDocument();
+    const form = documentBody.querySelector("#login-form");
+    const email = documentBody.querySelector("#email");
+    const password = documentBody.querySelector("#password");
+    const button = documentBody.querySelector("button[type='submit']");
+
+    expect(form).not.toBeNull();
+    expect(email).not.toBeNull();
+    expect(password).not.toBeNull();
+    expect(button).not.toBeNull();
   });
 
   test("shows error message for invalid credentials", async () => {
