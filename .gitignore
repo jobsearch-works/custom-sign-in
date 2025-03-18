@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db 
