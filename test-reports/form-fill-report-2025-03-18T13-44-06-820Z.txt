@@ -1,0 +1,31 @@
+Form Fill Test Report
+URL: https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Timestamp: 2025-03-18T13:44:06.821Z
+
+Navigating to https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Initial page screenshot saved to test-reports/initial-page-2025-03-18T13-44-06-820Z.png
+Extracted domain: greenhouse.io
+Detected platform: greenhouse
+Fetching commands for domain: greenhouse.io
+Found domain configuration with 1 command templates
+Found Apply button with selector: text=Apply Now
+Detecting form fields
+Found 7 inputs, 2 textareas, 0 selects
+Found 0 selectors in domain configuration
+Using fallback selector detection based on common patterns
+Form before filling screenshot saved to test-reports/before-fill-2025-03-18T13-44-06-820Z.png
+Found command list: sign-in with 3 commands
+Command list format: [{"type":"fill","value":"user@example.com","selector":"email"},{"value":"SecurePassword!","type":"fill","selector":"password"},{"type":"check","value":true,"selector":"terms"}]
+Executing command: fill - email - user@example.com
+Using selector: #email, [name="job_application[email]"]
+Filled #email, [name="job_application[email]"] with "user@example.com"
+Executing command: fill - password - SecurePassword!
+Using selector: password
+Error filling field password: page.fill: Target page, context or browser has been closed
+Call log:
+[2m  - waiting for locator('[id*="password"], [name*="password"], label:text-is("password") + input, label:text-is("password") + textarea')[22m
+
+Executing command: check - terms - true
+Using selector: terms
+Error setting checkbox terms: page.check: Target page, context or browser has been closed
+Test failed with error: page.screenshot: Target page, context or browser has been closed

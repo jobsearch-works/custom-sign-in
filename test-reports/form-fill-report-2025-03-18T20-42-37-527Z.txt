@@ -1,0 +1,102 @@
+Form Fill Test Report
+URL: https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Timestamp: 2025-03-18T20:42:37.527Z
+
+Navigating to https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Initial page screenshot saved to test-reports/initial-page-2025-03-18T20-42-37-527Z.png
+Extracted domain: boards.greenhouse.io
+Fetching commands for domain: boards.greenhouse.io
+Found domain configuration with 1 command templates
+Found Apply button with selector: text=Apply Now
+Detecting form fields...
+Found 7 inputs, 2 textareas, and 0 selects
+Form screenshot saved to test-reports/before-fill-2025-03-18T20-42-37-527Z.png
+Found 11 selectors in domain config
+Using selectors: {"security_code":"#security_code","question_visa":"#job_application_answers_attributes_2_text_value","resume":"#resume_text","last_name":"#last_name","first_name":"#first_name","question_work_location":"#job_application_answers_attributes_3_text_value","cover_letter":"#cover_letter_text","question_python_cpp_experience":"#job_application_answers_attributes_0_text_value","question_location":"#job_application_answers_attributes_1_answer_selected_options_attributes_1_question_option_id","email":"#email","phone":"#phone"}
+Using command list: fill-application with 11 commands
+Command list format: object
+
+Executing command: FILL
+Field: first_name
+Value: John
+Resolved selector: #first_name (from field mapping)
+✅ Filled #first_name with "John"
+
+Executing command: FILL
+Field: last_name
+Value: Doe
+Resolved selector: #last_name (from field mapping)
+✅ Filled #last_name with "Doe"
+
+Executing command: FILL
+Field: email
+Value: john.doe@example.com
+Resolved selector: #email (from field mapping)
+✅ Filled #email with "john.doe@example.com"
+
+Executing command: FILL
+Field: phone
+Value: 123-456-7890
+Resolved selector: #phone (from field mapping)
+✅ Filled #phone with "123-456-7890"
+
+Executing command: FILL
+Field: resume
+Value: Resume content here...
+Resolved selector: #resume_text (from field mapping)
+❌ Error filling field #resume_text: page.fill: Test ended.
+Call log:
+[2m  - waiting for locator('#resume_text')[22m
+[2m    - locator resolved to <textarea class="paste" id="resume_text" title="Enter manually" name="job_application[resume_text]"></textarea>[22m
+[2m    - fill("Resume content here...")[22m
+[2m  - attempting fill action[22m
+[2m    2 × waiting for element to be visible, enabled and editable[22m
+[2m      - element is not visible[22m
+[2m    - retrying fill action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and editable[22m
+[2m      - element is not visible[22m
+[2m    - retrying fill action[22m
+[2m      - waiting 100ms[22m
+[2m    51 × waiting for element to be visible, enabled and editable[22m
+[2m       - element is not visible[22m
+[2m     - retrying fill action[22m
+[2m       - waiting 500ms[22m
+
+
+Executing command: FILL
+Field: cover_letter
+Value: Cover letter content here...
+Resolved selector: #cover_letter_text (from field mapping)
+❌ Failed to execute command: page.waitForTimeout: Target page, context or browser has been closed
+
+Executing command: FILL
+Field: question_python_cpp_experience
+Value: I have experience in Python and C++ for trading strategies at XYZ Company...
+Resolved selector: #job_application_answers_attributes_0_text_value (from field mapping)
+❌ Failed to execute command: page.waitForTimeout: Target page, context or browser has been closed
+
+Executing command: SELECT
+Field: question_location
+Value: 15574187005
+Resolved selector: #job_application_answers_attributes_1_answer_selected_options_attributes_1_question_option_id (from field mapping)
+❌ Failed to execute command: page.waitForTimeout: Target page, context or browser has been closed
+
+Executing command: FILL
+Field: question_visa
+Value: No visa sponsorship required
+Resolved selector: #job_application_answers_attributes_2_text_value (from field mapping)
+❌ Failed to execute command: page.waitForTimeout: Target page, context or browser has been closed
+
+Executing command: FILL
+Field: question_work_location
+Value: Yes, I will work from my current location
+Resolved selector: #job_application_answers_attributes_3_text_value (from field mapping)
+❌ Failed to execute command: page.waitForTimeout: Target page, context or browser has been closed
+
+Executing command: FILL
+Field: security_code
+Value: 123456
+Resolved selector: #security_code (from field mapping)
+❌ Failed to execute command: page.waitForTimeout: Target page, context or browser has been closed
+Test failed with error: page.screenshot: Target page, context or browser has been closed

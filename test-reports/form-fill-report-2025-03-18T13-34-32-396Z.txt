@@ -1,0 +1,16 @@
+Form Fill Test Report
+URL: https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Timestamp: 2025-03-18T13:34:32.397Z
+
+Navigating to https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Initial page screenshot saved to test-reports/initial-page-2025-03-18T13-34-32-396Z.png
+Extracted domain: greenhouse.io
+Detected platform: greenhouse
+Fetching commands for domain: greenhouse.io
+Found domain configuration with 1 command templates
+Found Apply button with selector: text=Apply Now
+Detecting form fields
+Found 7 inputs, 2 textareas, 0 selects
+Form before filling screenshot saved to test-reports/before-fill-2025-03-18T13-34-32-396Z.png
+Found command list: sign-in with 3 commands
+Test failed with error: cmdStr.split is not a function or its return value is not iterable

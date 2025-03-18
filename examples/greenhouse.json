@@ -1,0 +1,158 @@
+{
+  "domain": "boards.greenhouse.io",
+  "selectors": {
+    "first_name": {
+      "selector": "#first_name",
+      "description": "First Name input field",
+      "type": "css",
+      "optional": false
+    },
+    "last_name": {
+      "selector": "#last_name",
+      "description": "Last Name input field",
+      "type": "css",
+      "optional": false
+    },
+    "email": {
+      "selector": "#email",
+      "description": "Email input field",
+      "type": "css",
+      "optional": false
+    },
+    "phone": {
+      "selector": "#phone",
+      "description": "Phone input field",
+      "type": "css",
+      "optional": true
+    },
+    "resume": {
+      "selector": "#resume_text",
+      "description": "Resume text area",
+      "type": "css",
+      "optional": false
+    },
+    "cover_letter": {
+      "selector": "#cover_letter_text",
+      "description": "Cover Letter text area",
+      "type": "css",
+      "optional": true
+    },
+    "question_python_cpp_experience": {
+      "selector": "#job_application_answers_attributes_0_text_value",
+      "description": "Python & C++ experience question",
+      "type": "css",
+      "optional": false
+    },
+    "question_location": {
+      "selector": "#job_application_answers_attributes_1_answer_selected_options_attributes_1_question_option_id",
+      "description": "Where do you currently live?",
+      "type": "css",
+      "optional": false
+    },
+    "question_visa": {
+      "selector": "#job_application_answers_attributes_2_text_value",
+      "description": "Visa sponsorship question",
+      "type": "css",
+      "optional": false
+    },
+    "question_work_location": {
+      "selector": "#job_application_answers_attributes_3_text_value",
+      "description": "Work location question",
+      "type": "css",
+      "optional": false
+    },
+    "security_code": {
+      "selector": "#security_code",
+      "description": "Security code input field",
+      "type": "css",
+      "optional": false
+    }
+  },
+  "commands": [
+    {
+      "name": "fill-application",
+      "description": "Commands to fill out the job application form",
+      "commands": [
+        {
+          "type": "fill",
+          "field": "first_name",
+          "value": "John",
+          "required": true,
+          "description": "Enter first name"
+        },
+        {
+          "type": "fill",
+          "field": "last_name",
+          "value": "Doe",
+          "required": true,
+          "description": "Enter last name"
+        },
+        {
+          "type": "fill",
+          "field": "email",
+          "value": "john.doe@example.com",
+          "required": true,
+          "description": "Enter email address"
+        },
+        {
+          "type": "fill",
+          "field": "phone",
+          "value": "123-456-7890",
+          "required": false,
+          "description": "Enter phone number"
+        },
+        {
+          "type": "fill",
+          "field": "resume",
+          "value": "Resume content here...",
+          "required": true,
+          "description": "Enter resume text"
+        },
+        {
+          "type": "fill",
+          "field": "cover_letter",
+          "value": "Cover letter content here...",
+          "required": false,
+          "description": "Enter cover letter text"
+        },
+        {
+          "type": "fill",
+          "field": "question_python_cpp_experience",
+          "value": "I have experience in Python and C++ for trading strategies at XYZ Company...",
+          "required": true,
+          "description": "Enter experience details"
+        },
+        {
+          "type": "select",
+          "field": "question_location",
+          "value": "15574187005",
+          "required": true,
+          "description": "Select current location (e.g., Asia)"
+        },
+        {
+          "type": "fill",
+          "field": "question_visa",
+          "value": "No visa sponsorship required",
+          "required": true,
+          "description": "Enter visa requirements"
+        },
+        {
+          "type": "fill",
+          "field": "question_work_location",
+          "value": "Yes, I will work from my current location",
+          "required": true,
+          "description": "Enter work location details"
+        },
+        {
+          "type": "fill",
+          "field": "security_code",
+          "value": "123456",
+          "required": true,
+          "description": "Enter security code"
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2025-03-18T13:24:31Z",
+  "createdAt": "2025-03-18T07:04:35Z"
+}

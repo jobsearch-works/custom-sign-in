@@ -1,37 +1,76 @@
 {
-  "name": "custom-sign-in",
+  "name": "ats-form-filler",
   "version": "1.0.0",
-  "description": "MyWorkdayJobs account form filler",
+  "description": "Automated form filling for various Applicant Tracking Systems (ATS) including Greenhouse, Workday, and more",
   "license": "MIT",
-  "main": "src/myworkdayjobs/MyWorkdayJobsAccountFiller.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "bin": {
+    "save-domain-schema": "./dist/commands/save-domain-schema.js",
+    "test-domain-form": "./dist/commands/test-domain-form.js",
+    "test-schema-urls": "./dist/commands/test-schema-urls.js"
+  },
   "scripts": {
     "build": "tsc",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test": "playwright test",
-    "lint": "eslint src/**/*.ts",
-    "prepare": "yarn build",
+    "lint": "eslint src/**/*.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
     "start": "webpack serve --mode development",
-    "build:web": "webpack --mode production"
+    "build:web": "webpack --mode production",
+    "save-domain-schema": "node ./dist/commands/save-domain-schema.js",
+    "save-schema": "node ./dist/commands/save-domain-schema.js",
+    "test:form": "node ./scripts/test-form-fill.sh",
+    "test:greenhouse": "FORM_URL=https://boards.greenhouse.io/aurosglobal/jobs/4493809005 npx playwright test -g \"Execute domain form commands from Firestore\"",
+    "test:domain": "npx playwright test -g \"Execute domain form commands from Firestore\"",
+    "test:schema": "node ./dist/commands/test-schema-urls.js",
+    "test:greenhouse:schema": "node ./dist/commands/test-schema-urls.js boards.greenhouse.io"
   },
   "keywords": [
-    "sign-in",
-    "authentication"
+    "ats",
+    "form-filler",
+    "automation",
+    "greenhouse",
+    "workday",
+    "bamboohr",
+    "workable",
+    "job-application",
+    "recruitment"
   ],
   "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ats-form-filler"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ats-form-filler/issues"
+  },
+  "homepage": "https://github.com/yourusername/ats-form-filler#readme",
   "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
     "@playwright/test": "^1.42.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/node": "^20.11.24",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
+    "@types/chrome": "^0.0.309",
     "eslint": "^8.57.0",
     "html-webpack-plugin": "^5.6.0",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.3.3",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@serge-ivo/firestore-client": "^1.1.0",
+    "dotenv": "^16.4.7",
+    "firebase": "^10.8.0",
+    "firebase-admin": "^12.0.0"
   }
 }

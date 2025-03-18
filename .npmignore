@@ -1,0 +1,42 @@
+# Source files
+src/
+
+# Test files
+tests/
+*.test.js
+*.spec.js
+
+# Development configs
+.eslintrc*
+.prettierrc*
+.babelrc
+webpack.config.js
+playwright.config.js
+
+# Git files
+.git
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env*
+
+# Build artifacts
+coverage/
+.nyc_output/
+
+# OS files
+.DS_Store
+Thumbs.db 

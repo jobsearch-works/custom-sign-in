@@ -1,0 +1,35 @@
+Form Fill Test Report
+URL: https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Timestamp: 2025-03-18T13:32:40.914Z
+
+Navigating to https://boards.greenhouse.io/aurosglobal/jobs/4493809005
+Initial page screenshot saved to test-reports/initial-page-2025-03-18T13-32-40-914Z.png
+Extracted domain: greenhouse.io
+Detected platform: greenhouse
+Using mock commands
+Found domain configuration with 1 command templates
+Found Apply button with selector: text=Apply Now
+Detecting form fields
+Found 7 inputs, 2 textareas, 0 selects
+Form before filling screenshot saved to test-reports/before-fill-2025-03-18T13-32-40-914Z.png
+Found command list: sign-in with 8 commands
+Executing command: fill - first_name - John
+Filled #first_name, input[name="job_application[first_name]"] with "John"
+Executing command: fill - last_name - Doe
+Filled #last_name, input[name="job_application[last_name]"] with "Doe"
+Executing command: fill - email - user@example.com
+Filled #email, input[name="job_application[email]"] with "user@example.com"
+Executing command: fill - phone - +1234567890
+Filled #phone, input[name="job_application[phone]"] with "+1234567890"
+Executing command: fill - python_experience - I have 5 years of experience with Python and C++ in algorithmic trading.
+Failed to execute command: page.fill: Test timeout of 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[id*="python_experience"], [name*="python_experience"], label:text-is("python_experience") + input, label:text-is("python_experience") + textarea')[22m
+
+Executing command: select - location - Asia
+Error selecting Asia: page.$: Target page, context or browser has been closed
+Executing command: fill - visa - No visa sponsorship required.
+Failed to execute command: page.$: Target page, context or browser has been closed
+Executing command: fill - residential_location - Yes, I will work from my current location.
+Failed to execute command: page.$: Target page, context or browser has been closed
+Test failed with error: page.screenshot: Target page, context or browser has been closed

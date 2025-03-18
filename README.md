@@ -163,6 +163,99 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 - Forgot password functionality
 - Automated testing suite
 
+## CLI Commands
+
+The package includes a command-line interface (CLI) for managing command lists in Firestore. These command lists are used to automate sign-in and form filling processes.
+
+### Installation
+
+Ensure you've set up the correct Firebase configuration in your `.env` file:
+
+```
+FIREBASE_API_KEY=your-api-key
+FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+FIREBASE_APP_ID=your-app-id
+FIREBASE_MEASUREMENT_ID=your-measurement-id
+```
+
+### Available Commands
+
+#### Initialize a Domain Configuration
+
+Before storing command lists for a domain, you need to initialize its configuration:
+
+```bash
+ts-node cli.ts initialize-domain <domain>
+```
+
+For example:
+
+```bash
+ts-node cli.ts initialize-domain greenhouse.io
+```
+
+#### Store a Command List for a Domain
+
+Add a set of commands for a specific domain:
+
+```bash
+ts-node cli.ts store-list <domain> <listName>
+```
+
+Example:
+
+```bash
+ts-node cli.ts store-list greenhouse.io sign-in
+```
+
+#### Store Generic Commands
+
+Store generic commands that aren't tied to a specific domain:
+
+```bash
+ts-node cli.ts store <commandKey>
+```
+
+Example:
+
+```bash
+ts-node cli.ts store test-commands
+```
+
+#### Execute Stored Commands
+
+Execute a previously stored command list:
+
+```bash
+ts-node cli.ts execute <commandKey>
+```
+
+Example:
+
+```bash
+ts-node cli.ts execute test-commands
+```
+
+### Command Format
+
+Commands are defined with the following format:
+
+- For fill operations: `fill:selector@domain -> value="value"`
+- For check operations: `check:selector@domain -> value=true/false`
+
+In domain-specific command lists, the commands are stored as objects:
+
+```json
+[
+  { "type": "fill", "selector": "email", "value": "user@example.com" },
+  { "type": "fill", "selector": "password", "value": "SecurePassword!" },
+  { "type": "check", "selector": "terms", "value": true }
+]
+```
+
 ## Development
 
 1. Clone the repository
@@ -289,3 +382,66 @@ Tests are provided for both mock and live environments:
 ```bash
 npx playwright test tests/e2e/sign-in.spec.ts
 ```
+
+# ATS Form Filler
+
+Automated form filling for various Applicant Tracking Systems (ATS) including Greenhouse, Workday, and more.
+
+## Features
+
+- Domain-specific form automation
+- Configuration-driven (no hardcoded selectors)
+- Support for various input types (text, select, checkbox)
+- Extensible architecture
+
+## Installation
+
+```bash
+npm install
+```
+
+## Usage
+
+### Save domain schema to Firestore
+
+The save-schema command allows you to save domain automation configuration to Firestore.
+
+```bash
+# Using npm script
+npm run save-schema -- -f <path-to-schema-file> [options]
+
+# Options:
+# -f, --file <path>     Path to the JSON schema file (required)
+# -d, --domain <domain> Override the domain in the schema file
+# --dry-run             Print the schema without saving to Firestore
+```
+
+Example:
+
+```bash
+# Save a schema to Firestore
+npm run save-schema -- -f ./schemas/greenhouse.json
+
+# Test a schema without saving (dry run)
+npm run save-schema -- -f ./schemas/greenhouse.json --dry-run
+```
+
+For more details, see [Domain Schema Usage](./docs/domain-schema-usage.md).
+
+## Development
+
+### Build the project
+
+```bash
+npm run build
+```
+
+### Run tests
+
+```bash
+npm test
+```
+
+## License
+
+MIT
