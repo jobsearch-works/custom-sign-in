@@ -2,11 +2,15 @@
   "name": "custom-sign-in",
   "version": "1.0.0",
   "description": "Custom sign-in implementation",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:all": "yarn test && yarn test:e2e",
     "lint": "eslint src/**/*.ts",
     "prepare": "yarn build",
     "start": "webpack serve --mode development",
@@ -17,8 +21,8 @@
     "authentication"
   ],
   "author": "",
-  "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.42.1",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
@@ -26,14 +30,14 @@
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "eslint": "^8.57.0",
+    "html-webpack-plugin": "^5.6.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "ts-jest": "^29.1.2",
+    "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.2",
-    "ts-loader": "^9.5.1",
-    "html-webpack-plugin": "^5.6.0"
+    "webpack-dev-server": "^5.0.2"
   }
 }

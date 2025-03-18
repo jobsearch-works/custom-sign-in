@@ -3,71 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Sign-In Test</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .sign-in-form {
-        border: 1px solid #ccc;
-        padding: 20px;
-        border-radius: 4px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      label {
-        display: block;
-        margin-bottom: 5px;
-      }
-      input {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-      button {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #0056b3;
-      }
-      #result {
-        margin-top: 20px;
-        padding: 10px;
-        border-radius: 4px;
-      }
-      .success {
-        background-color: #d4edda;
-        color: #155724;
-      }
-      .error {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
-    </style>
+    <title>Test Application Page</title>
   </head>
   <body>
-    <h1>Custom Sign-In Test</h1>
-    <div class="sign-in-form">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-      </div>
-      <button id="signInButton">Sign In</button>
+    <!-- Back Button -->
+    <button type="button" data-automation-id="backToJobPosting">
+      Back to Job Posting
+    </button>
+
+    <!-- Job Title -->
+    <h3 data-automation-id="jobTitleHeading">Director AI Risk</h3>
+
+    <!-- Progress Bar -->
+    <div aria-label="Application Progress">
+      <ol data-automation-id="progressBar">
+        <li data-automation-id="progressBarActiveStep">
+          Current step 1 of 6 - Create Account/Sign In
+        </li>
+        <li data-automation-id="progressBarInactiveStep">
+          Step 2 of 6 - My Information
+        </li>
+        <li data-automation-id="progressBarInactiveStep">
+          Step 3 of 6 - My Experience
+        </li>
+        <li data-automation-id="progressBarInactiveStep">
+          Step 4 of 6 - Application Questions
+        </li>
+        <li data-automation-id="progressBarInactiveStep">
+          Step 5 of 6 - Voluntary Disclosures
+        </li>
+        <li data-automation-id="progressBarInactiveStep">
+          Step 6 of 6 - Review
+        </li>
+      </ol>
     </div>
-    <div id="result"></div>
+
+    <!-- Account Creation Form -->
+    <h2 id="authViewTitle">Create Account</h2>
+    <form data-automation-id="signInFormo">
+      <label for="input-4">Email Address</label>
+      <input
+        type="text"
+        data-automation-id="email"
+        id="input-4"
+        required
+        autocomplete="email"
+      />
+
+      <label for="input-5">Password</label>
+      <input
+        type="password"
+        data-automation-id="password"
+        id="input-5"
+        required
+        autocomplete="new-password"
+      />
+
+      <label for="input-6">Verify New Password</label>
+      <input
+        type="password"
+        data-automation-id="verifyPassword"
+        id="input-6"
+        required
+        autocomplete="new-password"
+      />
+
+      <div>
+        <input
+          id="input-8"
+          type="checkbox"
+          data-automation-id="createAccountCheckbox"
+        />
+        <label for="input-8"
+          >I understand and agree to the Candidate Privacy Statement.</label
+        >
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" data-automation-id="createAccountSubmitButton">
+        Create Account
+      </button>
+    </form>
+
+    <!-- Sign In / Forgot Password -->
+    <div>
+      Already have an account?
+      <button data-automation-id="signInLink">Sign In</button>
+    </div>
+    <div>
+      <button data-automation-id="forgotPasswordLink">
+        Forgot your password?
+      </button>
+    </div>
+
+    <!-- Hidden Bot Detection Input -->
+    <label for="botInput"
+      >Enter website. This input is for robots only, do not enter if you're
+      human.</label
+    >
+    <input
+      data-automation-id="beecatcher"
+      id="botInput"
+      name="website"
+      type="text"
+    />
   </body>
 </html>
