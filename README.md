@@ -42,6 +42,16 @@ Currently supports:
 
 Future releases will add support for:
 
+- BambooHR (bamboohr.com)
+- Greenhouse (greenhouse.io)
+- Workable (workable.com)
+- Zoho Recruit (zoho.com/recruit)
+- Bullhorn (bullhorn.com)
+- Recruitee (recruitee.com)
+- Breezy HR (breezy.hr)
+- iCIMS Talent Cloud (icims.com)
+- JazzHR (jazzhr.com)
+- Manatal (manatal.com)
 - Other major ATS (Applicant Tracking System) platforms
 - Custom company career portals
 - OAuth-based authentication systems
@@ -167,7 +177,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 
 ## Testing
 
-The package includes a comprehensive test suite that verifies both the core functionality and the UI interactions.
+The package includes end-to-end tests using Playwright to verify both the core functionality and the UI interactions.
 
 ### Running Tests
 
@@ -175,44 +185,16 @@ The package includes a comprehensive test suite that verifies both the core func
 # Run all tests
 yarn test
 
-# Run tests in watch mode
-yarn test --watch
-
-# Run tests with coverage
-yarn test --coverage
+# Run tests with UI
+yarn test:e2e:ui
 ```
-
-### Test Suite Overview
-
-The test suite consists of two main test files:
-
-#### 1. CustomSignIn.test.ts
-
-Tests the core functionality of the `CustomSignIn` class:
-
-- Basic initialization
-- Sign-in attempt handling
-
-#### 2. sign-in.test.ts
-
-Tests the UI interactions and form handling:
-
-- Form element rendering
-- Account creation with invalid data
-  - Password mismatch validation
-  - Email format validation
-  - Password strength requirements
-- Successful account creation flow
-  - Form submission
-  - Privacy statement checkbox
-  - Success message display
 
 ### Test Environment
 
-- Uses Jest as the test runner
-- Implements jsdom for DOM manipulation testing
-- Uses @testing-library/jest-dom for enhanced DOM assertions
-- Mock HTML templates for consistent testing environment
+- Uses Playwright for end-to-end testing
+- Tests run in real browser environments
+- Comprehensive UI interaction testing
+- Cross-browser compatibility testing
 
 ### Test Coverage
 
@@ -235,12 +217,75 @@ The tests verify:
 ## Scripts
 
 - `yarn build` - Build the package
-- `yarn test` - Run tests
+- `yarn test` - Run Playwright tests
 - `yarn test:e2e` - Run end-to-end tests with Playwright
 - `yarn test:e2e:ui` - Run end-to-end tests with UI
-- `yarn test:all` - Run all test suites
 - `yarn lint` - Run ESLint
 
 ## License
 
 MIT
+
+# MyWorkdayJobs Account Form Filler
+
+A specialized utility for filling out account creation and sign-in forms on MyWorkdayJobs.com career portal pages (e.g., cba.wd3.myworkdayjobs.com).
+
+## Purpose
+
+This utility is specifically designed to automate form filling on MyWorkdayJobs.com career portal pages. It handles:
+
+- Account creation form fields
+- Sign-in form fields
+- Switching between create account and sign-in modes
+
+## Form Structure Requirements
+
+The utility expects the following HTML structure:
+
+- Email/Username field (`#input-4`)
+- Password field (`#input-5`)
+- Verify Password field (`#input-6`) - visible in create account mode
+- Terms checkbox (`#input-8`) - visible in create account mode
+- Mode switch links (elements containing exact text "Sign In" or "Create Account")
+
+## Usage
+
+```javascript
+// Create an instance
+const formFiller = new MyWorkdayJobsAccountFiller();
+
+// Fill sign-in form
+await formFiller.fillSignInFields({
+  username: "user@example.com",
+  password: "password123",
+});
+
+// Fill account creation form
+await formFiller.fillAccountCreationFields({
+  email: "newuser@example.com",
+  password: "password123",
+  verifyPassword: "password123",
+  acceptTerms: true,
+});
+
+// Switch between modes
+await formFiller.switchMode("signIn"); // or "createAccount"
+
+// Get current mode
+const mode = await formFiller.getCurrentMode(); // "signIn" or "createAccount"
+```
+
+## Important Notes
+
+1. This utility is specifically designed for MyWorkdayJobs.com career portal pages and may not work on other websites
+2. It only handles form filling and does not submit forms or handle responses
+3. The form structure must match exactly what's expected (specific IDs and text content)
+4. The utility starts in "createAccount" mode by default (matching MyWorkdayJobs.com's default state)
+
+## Testing
+
+Tests are provided for both mock and live environments:
+
+```bash
+npx playwright test tests/e2e/sign-in.spec.ts
+```
